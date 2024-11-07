@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import csv
 import seaborn as sns
 from scipy.stats import norm
@@ -8,7 +7,6 @@ import random
 from tqdm import tqdm 
 import pandas as pd
 
-import matplotlib.pylab as pylab
 
 np.random.seed(42)
 
