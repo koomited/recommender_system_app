@@ -1,6 +1,5 @@
 import numpy as np
 import csv
-import seaborn as sns
 from scipy.stats import norm
 from collections import defaultdict
 import random
