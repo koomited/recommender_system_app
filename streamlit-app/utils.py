@@ -6,9 +6,6 @@ import pandas as pd
 
 np.random.seed(42)
 
-params = {'pdf.fonttype': 3, 'axes.labelsize': 18, 'xtick.labelsize':18
-, 'ytick.labelsize':18, 'legend.fontsize':18, "font.size":18}
-plt.rcParams.update(params)
 
 class AlternatingLeastSquare:
     def __init__(self, data_dir, embedding_dim:int) -> None:
