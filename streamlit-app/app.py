@@ -52,8 +52,7 @@ def fetch_poster(tmdb_id=None, imdb_id=None, api_key='YOUR_TMDB_API_KEY'):
 
 # map_movie_to_idx = json.load( open( "data/map_movie_to_idx.json" ) )
 
-with open("map_idx_to_movie", "r") as fp:
-    map_idx_to_movie= json.load(fp)
+
 
 def recommendation_for_new_user_stream(movies_dir,movie_title, movie_rating, lambd, tau):
 
