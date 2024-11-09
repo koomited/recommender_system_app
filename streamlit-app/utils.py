@@ -1,6 +1,6 @@
 import numpy as np
 import csv
-import defaultdict
+from collections import defaultdict
 import pandas as pd
 
 
