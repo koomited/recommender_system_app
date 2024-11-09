@@ -65,12 +65,12 @@ def recommendation_for_new_user_stream(movies_dir,movie_title, movie_rating, lam
     get_this_movie_index = map_idx_to_movie.index(movie_id)
 
     # get the item_vector
-    items_latents = pd.read_csv("data/items_latents.csv", index_col=0)
+    items_latents = pd.read_csv("items_latents.csv", index_col=0)
     items_latents = items_latents.to_numpy()
     item_vector = items_latents[:, get_this_movie_index]
 
     #get this item baias
-    item_biases = pd.read_csv("data/item_biases.csv", index_col=0)
+    item_biases = pd.read_csv("item_biases.csv", index_col=0)
     item_biases = item_biases.to_numpy().ravel()
     item_bias = item_biases[get_this_movie_index]
 
@@ -91,7 +91,7 @@ def recommendation_for_new_user_stream(movies_dir,movie_title, movie_rating, lam
         
         movies_to_recommend_ids.append(map_idx_to_movie[index])
 
-    links_data = pd.read_csv("../data/ml-25m/links.csv")
+    links_data = pd.read_csv("links.csv")
 
     
     movie_timbds = []
@@ -107,7 +107,7 @@ def recommendation_for_new_user_stream(movies_dir,movie_title, movie_rating, lam
 
 
 
-model_object = AlternatingLeastSquare("../data/ml-25m/ratings.csv", 10)
+model_object = AlternatingLeastSquare("ratings.csv", 10)
 
 
 # model_object.data_indexing()
@@ -115,10 +115,10 @@ model_object = AlternatingLeastSquare("../data/ml-25m/ratings.csv", 10)
 
 
 def get_trendy_movies_names_posters():
-    with open("data/sum_rating_per_movie", "r") as fp:
+    with open("sum_rating_per_movie", "r") as fp:
         sum_rating_per_movie= json.load(fp)
 
-    links_data = pd.read_csv("../data/ml-25m/links.csv")
+    links_data = pd.read_csv("links.csv")
     
     trendy_movies_index = np.argsort(np.array(sum_rating_per_movie))[-20:][::-1]
     movies_names = []
@@ -129,7 +129,7 @@ def get_trendy_movies_names_posters():
 
             movie_timbd_id = links_data[links_data["movieId"]== movie_id]["tmdbId"]
             movie_timbd_id = movie_timbd_id.item()
-            movies_names.append(model_object.get_movie_title_by_id("../data/ml-25m/movies.csv", movie_id))
+            movies_names.append(model_object.get_movie_title_by_id("movies.csv", movie_id))
             movies_posters.append(fetch_poster(tmdb_id=movie_timbd_id, api_key=API_KEY))
         except:
             continue
@@ -174,7 +174,7 @@ elif page=="Search":
     st.text_input("",placeholder="Insert your key words here.")
 elif page=="Recommendations":
     # pass
-    movies_df = pd.read_csv("../data/ml-25m/movies.csv")
+    movies_df = pd.read_csv("movies.csv")
     movie_titles = movies_df["title"].tolist()
     selected_movie = st.selectbox("The first movies you are rating", movie_titles)
     # movie_id = st.("Movie you rate")
@@ -183,7 +183,7 @@ elif page=="Recommendations":
 
     if st.button("What you may also like!", use_container_width=True, type="primary"):
 
-        movies_names_recom, movie_timbds = recommendation_for_new_user_stream("../data/ml-25m/movies.csv",selected_movie, movie_rate, 0.1, 0.2)
+        movies_names_recom, movie_timbds = recommendation_for_new_user_stream("movies.csv",selected_movie, movie_rate, 0.1, 0.2)
         movies_posters_recomm = []
         for  movie_timbd in movie_timbds :
             movies_posters_recomm.append(fetch_poster(tmdb_id=movie_timbd, api_key=API_KEY))
