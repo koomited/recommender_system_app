@@ -107,6 +107,33 @@ def recommendation_for_new_user_stream(movies_dir,movie_title, movie_rating, lam
 
 
 
+
+
+def search(movie_title, movies_dir):
+
+    movies_df = pd.read_csv(movies_dir)
+
+    movie_id = movies_df[movies_df["title"].str.contains(movie_title)]["movieId"]
+    movie_ids = movie_id.tolist()
+
+
+    
+    movies_names = []
+    posters = []
+    for movie_id in movie_ids:
+        movies_names.append(model_object.get_movie_title_by_id(movies_dir, movie_id))
+        movie_timbd_id = links_data[links_data["movieId"]== movie_id]["tmdbId"]
+        posters.append(fetch_poster(tmdb_id=movie_timbd_id.item(), imdb_id=None, api_key=API_KEY))
+        
+
+    
+        
+    return movies_names, posters
+
+
+
+
+
 model_object = AlternatingLeastSquare("ratings.csv", 10)
 
 
@@ -180,9 +207,21 @@ if page=='Popular':
 elif page=="Search":
     # pass
     st.subheader("Search for the movie you are looking for!!!!🧐🧐")
-    st.text_input("",placeholder="Insert your key words here.")
+    keywords = st.text_input("",placeholder="Insert your key words here.")
     if st.button("Search", use_container_width=True, type="primary"):
         with spinner:
+            movies_names, movie_posters = search(keywords, "movies.csv")
+
+            num_cols = 5
+            for i in range(0, len(movie_posters), num_cols): 
+                cols = st.columns(num_cols) 
+                
+                for j in range(num_cols):
+                    if i + j < len(movie_posters):  # Check if the index is within range
+                        try:
+                            cols[j].image(movie_posters[i + j], caption=movies_names[i + j], use_column_width=True)
+                        except:
+                            continue
 
             
 elif page=="Recommendations":
