@@ -203,6 +203,8 @@ if page=='Popular':
         
         for j in range(num_cols):
             if i + j < len(movies_posters):  # Check if the index is within range
+                cols[j].markdown( """<a href="https://www.linkedin.com/in/your-profile-username/"> 
+                <img src=movies_posters[i + j]""")
                 cols[j].image(movies_posters[i + j], caption=movies_names[i + j], use_column_width=True)
 
 elif page=="Search":
