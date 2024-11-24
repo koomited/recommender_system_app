@@ -246,17 +246,13 @@ elif page=="Recommendations":
 
     movie_id = movies_df[movies_df["title"]==selected_movie.strip()]["movieId"]
     movie_id = movie_id.item()
-    
-    st.write(f""" {movie_id}
-                 
-                 """, unsafe_allow_html=True)
                  
     movie_timbd_id = links_data[links_data["movieId"]== movie_id]["tmdbId"]
 
 
     poster = fetch_poster(tmdb_id=movie_timbd_id.item(), imdb_id=None, api_key=API_KEY)
 
-    st.image(poster, caption=selected_movie, use_column_width=True)
+    st.image(poster, caption=selected_movie, use_column_width=False)
     
     
     # movie_id = st.("Movie you rate")
