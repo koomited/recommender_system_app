@@ -212,17 +212,20 @@ elif page=="Search":
     if st.button("Search", use_container_width=True, type="primary"):
         with spinner:
             movies_names, movie_posters = search(keywords, "movies.csv")
+            if movies_names:
 
-            num_cols = 5
-            for i in range(0, len(movie_posters), num_cols): 
-                cols = st.columns(num_cols) 
-                
-                for j in range(num_cols):
-                    if i + j < len(movie_posters):  # Check if the index is within range
-                        try:
-                            cols[j].image(movie_posters[i + j], caption=movies_names[i + j], use_column_width=True)
-                        except:
-                            continue
+                num_cols = 5
+                for i in range(0, len(movie_posters), num_cols): 
+                    cols = st.columns(num_cols) 
+                    
+                    for j in range(num_cols):
+                        if i + j < len(movie_posters):  # Check if the index is within range
+                            try:
+                                cols[j].image(movie_posters[i + j], caption=movies_names[i + j], use_column_width=True)
+                            except:
+                                continue
+            else:
+                st.write("No content matched")
 
             
 elif page=="Recommendations":
