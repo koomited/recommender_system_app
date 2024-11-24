@@ -245,6 +245,7 @@ elif page=="Recommendations":
     links_data = pd.read_csv("links.csv")
 
     movie_id = movies_df[movies_df["title"]==selected_movie.strip()]["movieId"]
+    movie_id = movie_id.item()
     
     st.write(f""" {movie_id}
                  
