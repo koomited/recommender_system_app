@@ -225,7 +225,11 @@ elif page=="Search":
                             except:
                                 continue
             else:
-                st.write("No content matched")
+                st.write(f"""
+                 <div class="title", style="text-align: center">
+                 <span style="font-size:32px;"> No content matched 👋</span>
+                 </div>
+                 """, unsafe_allow_html=True)
 
             
 elif page=="Recommendations":
