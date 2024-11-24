@@ -245,7 +245,7 @@ elif page=="Recommendations":
     links_data = pd.read_csv("links.csv")
 
     movie_id = movies_df[movies_df["title"].str.contains(selected_movie)]["movieId"]
-    movie_id = movie_id[0].item()
+    movie_id = movie_id.tolist()[0]
     movie_timbd_id = links_data[links_data["movieId"]== movie_id]["tmdbId"]
 
 
