@@ -190,7 +190,7 @@ st.markdown("""
     }
     </style>""", unsafe_allow_html=True)
 
-    spinner = st.spinner('Wait for it...',)
+spinner = st.spinner('Wait for it...',)
 if page=='Popular':
     st.write("##")
     st.subheader("Trending Now")
