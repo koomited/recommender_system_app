@@ -241,9 +241,18 @@ elif page=="Recommendations":
     movies_df = pd.read_csv("movies.csv")
     movie_titles = movies_df["title"].tolist()
     selected_movie = st.selectbox("The first movies you are rating", movie_titles)
-    name, poster = search(selected_movie, "movies.csv")
-    name, poster = name[0], poster[0]
-    st.image(poster, caption=name, use_column_width=True)
+    
+    movies_df = pd.read_csv(movies_dir)
+    links_data = pd.read_csv("links.csv")
+
+    movie_id = movies_df[movies_df["title"].str.contains(selected_movie)]["movieId"]
+    movie_id = movie_id.item()
+    movie_timbd_id = links_data[links_data["movieId"]== movie_id]["tmdbId"]
+
+
+    poster = fetch_poster(tmdb_id=movie_timbd_id.item(), imdb_id=None, api_key=API_KEY)
+
+    st.image(poster, caption=selected_movie, use_column_width=True)
     
     
     # movie_id = st.("Movie you rate")
