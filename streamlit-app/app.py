@@ -242,7 +242,6 @@ elif page=="Recommendations":
     movie_titles = movies_df["title"].tolist()
     selected_movie = st.selectbox("The first movies you are rating", movie_titles)
     
-    movies_df = pd.read_csv(movies_dir)
     links_data = pd.read_csv("links.csv")
 
     movie_id = movies_df[movies_df["title"].str.contains(selected_movie)]["movieId"]
