@@ -241,15 +241,13 @@ elif page=="Recommendations":
     movies_df = pd.read_csv("movies.csv")
     movie_titles = movies_df["title"].tolist()
     selected_movie = st.selectbox("The first movies you are rating", movie_titles)
-    selected_movie_clean = selected_movie.strip().lower()
     
     links_data = pd.read_csv("links.csv")
 
-    movie_id = movies_df[movies_df["title"].str.contains(selected_movie_clean, case=False)]["movieId"]
-    st.write(f"""
-                 <div class="title", style="text-align: center">
-                 <span style="font-size:16px;"> No content matched "{movie_id}" </span>
-                 </div>
+    movie_id = movies_df[movies_df["title"].str.contains("toy)]["movieId"]
+    
+    st.write(f""" {movie_id}
+                 
                  """, unsafe_allow_html=True)
                  
     movie_timbd_id = links_data[links_data["movieId"]== movie_id]["tmdbId"]
