@@ -252,7 +252,7 @@ elif page=="Recommendations":
 
     poster = fetch_poster(tmdb_id=movie_timbd_id.item(), imdb_id=None, api_key=API_KEY)
 
-    st.image(poster, caption=selected_movie, use_column_width=False)
+    st.image(poster, width=50, caption=selected_movie, use_column_width=False)
     
     
     # movie_id = st.("Movie you rate")
