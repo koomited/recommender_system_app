@@ -244,12 +244,7 @@ elif page=="Recommendations":
     
     links_data = pd.read_csv("links.csv")
 
-    movie_id = movies_df[movies_df["title"].str.contains(str(selected_movie))]["movieId"]
-    st.write(f"""
-                 <div class="title", style="text-align: center">
-                 <span style="font-size:16px;"> No content matched "{movie_id}" </span>
-                 </div>
-                 """, unsafe_allow_html=True)
+    movie_id = movies_df[movies_df["title"].str.contains(selected_movie, case=False)]["movieId"]
                  
     movie_timbd_id = links_data[links_data["movieId"]== movie_id]["tmdbId"]
 
