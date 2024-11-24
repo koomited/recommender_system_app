@@ -154,7 +154,16 @@ st.sidebar.title("Menu")
 # st.sidebar.button("Recommendation")
 
 page = st.sidebar.radio("", ["Popular",  "Recommendations", "Search"])
+st.markdown("""
+    <style>
+    div.stSpinner > div {
+    text-align:center;
+    align-items: center;
+    justify-content: center;
+    }
+    </style>""", unsafe_allow_html=True)
 
+    spinner = st.spinner('Wait for it...',)
 if page=='Popular':
     st.write("##")
     st.subheader("Trending Now")
@@ -172,6 +181,10 @@ elif page=="Search":
     # pass
     st.subheader("Search for the movie you are looking for!!!!🧐🧐")
     st.text_input("",placeholder="Insert your key words here.")
+    if st.button("Search", use_container_width=True, type="primary"):
+        with spinner:
+
+            
 elif page=="Recommendations":
     st.session_state.sidebar_state = "collapsed" #if st.session_state.sidebar_state == "expanded" else "expanded"
     
@@ -182,20 +195,6 @@ elif page=="Recommendations":
     # movie_id = st.("Movie you rate")
     # st.write(movie_id)
     movie_rate = st.number_input("The rate you give", min_value=0, max_value=5)
-
-    st.markdown("""
-    <style>
-    div.stSpinner > div {
-    text-align:center;
-    align-items: center;
-    justify-content: center;
-    }
-    </style>""", unsafe_allow_html=True)
-
-    spinner = st.spinner('Wait for it...',)
-
-
-
 
 
     if st.button("What you may also like!", use_container_width=True, type="primary"):
