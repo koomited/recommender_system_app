@@ -241,6 +241,11 @@ elif page=="Recommendations":
     movies_df = pd.read_csv("movies.csv")
     movie_titles = movies_df["title"].tolist()
     selected_movie = st.selectbox("The first movies you are rating", movie_titles)
+    name, poster = search(movie_title, movies_dir)
+    name, poster = name.item(), poster.item()
+    st.image(poster, caption=name, use_column_width=True)
+    
+    
     # movie_id = st.("Movie you rate")
     # st.write(movie_id)
     movie_rate = st.number_input("The rate you give", min_value=0, max_value=5)
