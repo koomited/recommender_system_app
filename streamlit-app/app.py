@@ -112,6 +112,7 @@ def recommendation_for_new_user_stream(movies_dir,movie_title, movie_rating, lam
 def search(movie_title, movies_dir):
 
     movies_df = pd.read_csv(movies_dir)
+    links_data = pd.read_csv("links.csv")
 
     movie_id = movies_df[movies_df["title"].str.contains(movie_title)]["movieId"]
     movie_ids = movie_id.tolist()
