@@ -227,7 +227,7 @@ elif page=="Search":
             else:
                 st.write(f"""
                  <div class="title", style="text-align: center">
-                 <span style="font-size:32px;"> No content matched 👋</span>
+                 <span style="font-size:32px;"> No content matched "{keywords}" </span>
                  </div>
                  """, unsafe_allow_html=True)
 
