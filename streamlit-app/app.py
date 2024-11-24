@@ -241,7 +241,7 @@ elif page=="Recommendations":
     movies_df = pd.read_csv("movies.csv")
     movie_titles = movies_df["title"].tolist()
     selected_movie = st.selectbox("The first movies you are rating", movie_titles)
-    name, poster = search(selected_movie, "movies.csv)
+    name, poster = search(selected_movie, "movies.csv")
     name, poster = name.item(), poster.item()
     st.image(poster, caption=name, use_column_width=True)
     
