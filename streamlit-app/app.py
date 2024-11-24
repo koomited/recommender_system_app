@@ -244,7 +244,7 @@ elif page=="Recommendations":
     
     links_data = pd.read_csv("links.csv")
 
-    movie_id = movies_df[movies_df["title"].str.contains(selected_movie)]["movieId"]
+    movie_id = movies_df[movies_df["title"].str.contains("Toy")]["movieId"]
     st.write(f"""
                  <div class="title", style="text-align: center">
                  <span style="font-size:16px;"> No content matched "{movie_id }" </span>
