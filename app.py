@@ -202,7 +202,7 @@ if page=='Popular':
         
         for j in range(num_cols):
             if i + j < len(movies_posters):  # Check if the index is within range
-                cols[j].image(movies_posters[i + j], caption=movies_names[i + j], use_column_width=True)
+                cols[j].image(movies_posters[i + j], caption=movies_names[i + j], use_container_width=True)
 
 elif page=="Search":
     # pass
@@ -219,7 +219,7 @@ elif page=="Search":
                 for j in range(num_cols):
                     if i + j < len(movie_posters):  # Check if the index is within range
                         try:
-                            cols[j].image(movie_posters[i + j], caption=movies_names[i + j], use_column_width=True)
+                            cols[j].image(movie_posters[i + j], caption=movies_names[i + j], use_container_width=True)
                         except:
                             continue
 
@@ -250,7 +250,7 @@ elif page=="Recommendations":
                 for j in range(num_cols):
                     if i + j < len(movies_posters_recomm):  # Check if the index is within range
                         try:
-                            cols[j].image(movies_posters_recomm[i + j], caption=movies_names_recom[i + j], use_column_width=True)
+                            cols[j].image(movies_posters_recomm[i + j], caption=movies_names_recom[i + j], use_container_width=True)
                         except:
                             continue
 
